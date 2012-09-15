@@ -1,6 +1,7 @@
 import numpy as np
 from scikits.audiolab import Sndfile
 from scikits.audiolab import Format
+import pylab as plt
 
 
 #################################################
@@ -17,7 +18,6 @@ noise = np.empty(3*fs)
 for i in range(noise.size):
     # generate random value and turn it down!
     noise[i] = np.random.random()*0.2
-
 
 #################################################
 ########## WRITING NOISE TO AUDIO FILE ##########
@@ -36,3 +36,10 @@ f.write_frames(noise)
 # close the audio file
 f.close()
 
+
+#################################################
+############### PLOTTING THE NOISE ##############
+#################################################
+
+plt.plot(noise[0:512])
+plt.show()

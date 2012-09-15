@@ -1,38 +1,14 @@
 import numpy as np
-from scikits.audiolab import Sndfile
+from scikits.audiolab import wavread
 from scikits.audiolab import Format
+from scikits.audiolab import Sndfile
 
 #################################################
 ######## CREATING A SOUND FILE INSTANCE #########
 #################################################
 
-# create Sndfile instance with our example audio file
-f = Sndfile('viola.wav', 'r')
-
-
-#################################################
-######## EXTRACTING AUDIO FILE META-DATA ########
-#################################################
-
-# extract and print sample rate
-fs = f.samplerate
-print "sample rate: ",fs
-
-# extract and print the number of channels
-nc = f.channels
-print "number of channels: ",nc
-
-# extract the number of samples
-nsamples = f.nframes
-
-
-#################################################
-######## READ AUDIO SAMPLES FROM THE FILE #######
-#################################################
-
-# we can read audio samples using the read_frame method
-data = f.read_frames(nsamples)
-
+# extract audio from file
+samples, fs, enc = wavread('viola.wav')  
 
 #################################################
 ########## APPLY A DELAY TO THE SAMPLES #########
@@ -45,16 +21,16 @@ delay = fs/2
 alpha = 0.75
 
 # create an empty array for the output
-out = np.zeros(data.size)
+out = np.zeros(samples.size)
 
 # for every sample in the array
-for i in range(data.size):
+for i in range(samples.size):
 
     # if we are safe to apply the delay without negative indexing
     if (i >= delay):
-        out[i] = data[i] + data[i-delay]*alpha
+        out[i] = samples[i] + samples[i-delay]*alpha
     else:
-        out[i] = data[i] # hacky
+        out[i] = samples[i] # hacky
 
 
 #################################################

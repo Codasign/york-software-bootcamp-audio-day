@@ -1,4 +1,5 @@
 import numpy as np
+import pylab as plt
 from scikits.audiolab import Sndfile
 from scikits.audiolab import Format
 
@@ -27,7 +28,7 @@ for i in range(tone.shape[0]):
     
     # generate tone and set volume for left and right
     tone[i][0] = np.sin(2*np.pi*freq*phaseVal)*amp
-    tone[i][1] = np.sin(2*np.pi*freq*phaseVal)*amp
+    tone[i][1] = np.sin(2*np.pi*(freq*2)*phaseVal)*amp
 
 
 #################################################
@@ -47,3 +48,16 @@ f.write_frames(tone)
 # close the audio file
 f.close()
 
+
+#################################################
+############### PLOT USING PYLAB ################
+#################################################   
+
+toneL = tone[:,0]
+toneR = tone[:,1]
+
+plt.subplot(211)
+plt.plot(toneL[0:200])
+plt.subplot(212)
+plt.plot(toneR[0:200])
+plt.show()

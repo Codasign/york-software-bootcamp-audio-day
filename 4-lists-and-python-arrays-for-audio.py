@@ -21,7 +21,7 @@ myAudio.append("hello!")
 # to do that 44100 times a second?
 print myAudio
 
-
+"""
 #################################################
 ############# PYTHON ARRAYS FOR AUDIO? ##########
 #################################################
@@ -37,3 +37,4 @@ myAudio = myAudio*2
 
 # oh dear oh dear oh dear
 print myAudio
+"""

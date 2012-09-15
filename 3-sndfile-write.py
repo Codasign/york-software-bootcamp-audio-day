@@ -28,7 +28,7 @@ print "encoding format: ",enc
 
 # extract the number of frames - single samples for
 # mono and pairs of samples for stereo
-nsamples = f.nframes
+num_samples = f.nframes
 
 
 #################################################
@@ -36,7 +36,7 @@ nsamples = f.nframes
 #################################################
 
 # we can read audio samples using the read_frame method
-data = f.read_frames(nsamples)
+samples = f.read_frames(num_samples)
 
 
 #################################################
@@ -47,14 +47,14 @@ data = f.read_frames(nsamples)
 new_filename = 'output_file.wav'
 
 # create the output audio data, in this case a simple copy
-output_data = data
+output_samples = samples
 
 # Create a Sndfile instance for writing wav files @ 44100 Hz
 format = Format('wav')
 f = Sndfile(new_filename, 'w', format, 1, 44100)
 
 # Write out the first 3 seconds worth of samples (fs*3)
-f.write_frames(output_data[:fs*3])
+f.write_frames(output_samples)
 
 # close the audio file
 f.close()

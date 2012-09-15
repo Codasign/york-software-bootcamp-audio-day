@@ -28,7 +28,7 @@ print "encoding format: ",enc
 
 # extract the number of frames - single samples for
 # mono and pairs of samples for stereo
-nsamples = f.nframes
+num_samples = f.nframes
 
 
 #################################################
@@ -36,15 +36,15 @@ nsamples = f.nframes
 #################################################
 
 # we can read audio samples using the read_frame method
-data = f.read_frames(nsamples)
+samples = f.read_frames(num_samples)
 
 
 #################################################
 ############# PLAYING AN AUDIO FILE #############
 #################################################
 
-# play the audio file data in 'data' at 44100Hz
-play(data,fs=44100)
+# play the audio file data in 'samples' at the sampling frequency 'fs' 
+play(samples,fs)
 
 
 #################################################
